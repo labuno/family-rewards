@@ -1,0 +1,215 @@
+{
+  "schema_version": 5,
+  "plan_id": "FR-001",
+  "project_root": "../../..",
+  "source_plan": "docs/implementation-plan.md",
+  "traceability": "traceability.json",
+  "work_packages": [
+    "WP01",
+    "WP02",
+    "WP03",
+    "WP04"
+  ],
+  "nodes": [
+    {
+      "id": "FR-001-01",
+      "title": "账号与首次设置",
+      "work_packages": [
+        "WP01"
+      ],
+      "source_sections": [
+        "## steps"
+      ],
+      "todo": "01.md",
+      "maturity": "DECOMPOSED",
+      "elaboration_blockers": [],
+      "readiness": "READY",
+      "status": "验证成功",
+      "depends_on": [],
+      "blockers": [],
+      "consumes": [],
+      "produces": [
+        {
+          "id": "artifact:auth",
+          "kind": "code",
+          "description": "账号密码哈希、数据库会话、管理员全局和本人权限；首次管理员设置周期锚点并明确初始余额。"
+        }
+      ],
+      "integration_gates": [
+        "npm test -- tests/integration/auth.test.ts"
+      ],
+      "evidence": [
+        {
+          "command": "npm test -- tests/integration/auth.test.ts",
+          "result": "PASS",
+          "scope": "local; 24 tests combined",
+          "verified_at": "2026-10-20T06:30:40.083148+00:00"
+        }
+      ]
+    },
+    {
+      "id": "FR-001-02",
+      "title": "周期与奖惩规则",
+      "work_packages": [
+        "WP02"
+      ],
+      "source_sections": [
+        "## steps"
+      ],
+      "todo": "02.md",
+      "maturity": "DECOMPOSED",
+      "elaboration_blockers": [],
+      "readiness": "READY",
+      "status": "验证成功",
+      "depends_on": [],
+      "blockers": [],
+      "consumes": [],
+      "produces": [
+        {
+          "id": "artifact:domain",
+          "kind": "code",
+          "description": "纯函数实现协议月、分档、家务限制、哭泣候选、两个独立封顶、积分跳过及反向抵销。"
+        }
+      ],
+      "integration_gates": [
+        "npm test -- tests/unit/domain.test.ts"
+      ],
+      "evidence": [
+        {
+          "command": "npm test -- tests/unit/domain.test.ts",
+          "result": "PASS",
+          "scope": "local; 22 rule tests including configured rates",
+          "verified_at": "2026-10-20T06:52:29.495657+00:00"
+        }
+      ]
+    },
+    {
+      "id": "FR-001-03",
+      "title": "事件与统一入账",
+      "work_packages": [
+        "WP03"
+      ],
+      "source_sections": [
+        "## steps"
+      ],
+      "todo": "03.md",
+      "maturity": "DECOMPOSED",
+      "elaboration_blockers": [],
+      "readiness": "READY",
+      "status": "验证成功",
+      "depends_on": [
+        "FR-001-01",
+        "FR-001-02"
+      ],
+      "blockers": [],
+      "consumes": [
+        "artifact:auth",
+        "artifact:domain"
+      ],
+      "produces": [
+        {
+          "id": "artifact:ledger",
+          "kind": "code",
+          "description": "只追加事件与确认，纠错使用反向记录，月底待办、总结快照、对象本人及任意管理员确认（创建即确认）、负钱包及跨期差额原子入账。"
+        }
+      ],
+      "integration_gates": [
+        "npm test -- tests/integration/ledger.test.ts tests/integration/record-types.test.ts"
+      ],
+      "evidence": [
+        {
+          "command": "npm test -- tests/integration/ledger.test.ts tests/integration/record-types.test.ts",
+          "result": "PASS",
+          "scope": "local; ledger and configurable types, 40 total tests",
+          "verified_at": "2026-10-20T06:54:17.426560+00:00"
+        }
+      ]
+    },
+    {
+      "id": "FR-001-04",
+      "title": "响应式界面与容器",
+      "work_packages": [
+        "WP04"
+      ],
+      "source_sections": [
+        "## steps"
+      ],
+      "todo": "04.md",
+      "maturity": "DECOMPOSED",
+      "elaboration_blockers": [],
+      "readiness": "READY",
+      "status": "验证成功",
+      "depends_on": [
+        "FR-001-01",
+        "FR-001-02",
+        "FR-001-03"
+      ],
+      "blockers": [],
+      "consumes": [
+        "artifact:auth",
+        "artifact:domain",
+        "artifact:ledger"
+      ],
+      "produces": [
+        {
+          "id": "artifact:application",
+          "kind": "code",
+          "description": "实现手机与电脑完整登录、记录、确认、结算、历史与协议；固定依赖、Docker构建、手动备份恢复，商城无入口。"
+        }
+      ],
+      "integration_gates": [
+        "npm test",
+        "npm run typecheck",
+        "npm run build",
+        "npm run test:e2e",
+        "npm run format:check",
+        "ARM64 Docker build and strict internal HTTPS smoke",
+        "public HTTPS ingress check"
+      ],
+      "evidence": [
+        {
+          "command": "npm test",
+          "result": "PASS",
+          "scope": "local and Oracle isolated application",
+          "verified_at": "2026-10-20T07:25:58.393437+00:00"
+        },
+        {
+          "command": "npm run typecheck",
+          "result": "PASS",
+          "scope": "local and Oracle isolated application",
+          "verified_at": "2026-10-20T07:25:58.393437+00:00"
+        },
+        {
+          "command": "npm run build",
+          "result": "PASS",
+          "scope": "local and Oracle isolated application",
+          "verified_at": "2026-10-20T07:25:58.393437+00:00"
+        },
+        {
+          "command": "npm run test:e2e",
+          "result": "PASS",
+          "scope": "local and Oracle isolated application",
+          "verified_at": "2026-10-20T07:25:58.393437+00:00"
+        },
+        {
+          "command": "npm run format:check",
+          "result": "PASS",
+          "scope": "local and Oracle isolated application",
+          "verified_at": "2026-10-20T07:25:58.393437+00:00"
+        },
+        {
+          "command": "ARM64 Docker build and strict internal HTTPS smoke",
+          "result": "PASS",
+          "scope": "local and Oracle isolated application",
+          "verified_at": "2026-10-20T07:25:58.393437+00:00"
+        },
+        {
+          "command": "public HTTPS ingress check",
+          "result": "PASS",
+          "scope": "public physical-interface HTTPS: trusted TLS, three accounts authenticated, setup role and logout verified; existing proxy regression passed",
+          "verified_at": "2026-10-20T07:30:56.755869+00:00"
+        }
+      ]
+    }
+  ]
+}

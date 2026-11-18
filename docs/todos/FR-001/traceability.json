@@ -1,0 +1,591 @@
+{
+  "schema_version": 1,
+  "plan_id": "FR-001",
+  "source_documents": [
+    {
+      "id": "plan",
+      "path": "docs/implementation-plan.md",
+      "sha256": "9f5c1f074a19c69d755fb5d662dbf9d40aca9fc234f316e6aedb650a614f022c",
+      "role": "primary"
+    },
+    {
+      "id": "product",
+      "path": "docs/product-design.md",
+      "sha256": "11a54ff53da46ccec4003649c6131825fb1e89d11b4ccfb21930a408dca9d408",
+      "role": "constraint"
+    },
+    {
+      "id": "development",
+      "path": "docs/development-design.md",
+      "sha256": "869c60542ebc2067cec8d7e122ad343c0bd0840773148fcd86c32920af57bcb0",
+      "role": "constraint"
+    },
+    {
+      "id": "decisions",
+      "path": "docs/open-questions.md",
+      "sha256": "51bbc4b596b812a3bb7d8ccc51d86e83878cdda2a6fa638c2b187e743cadb6f6",
+      "role": "constraint"
+    }
+  ],
+  "review_dimensions": [
+    {
+      "id": "objective",
+      "disposition": "covered",
+      "requirement_ids": [
+        "REQ-001"
+      ],
+      "rationale": "对应源条款与产品验收均映射到行为节点。"
+    },
+    {
+      "id": "scope",
+      "disposition": "covered",
+      "requirement_ids": [
+        "REQ-002",
+        "REQ-A01",
+        "REQ-A02",
+        "REQ-A03",
+        "REQ-A04",
+        "REQ-A05",
+        "REQ-A06",
+        "REQ-A07",
+        "REQ-A08",
+        "REQ-A09",
+        "REQ-A10",
+        "REQ-A11",
+        "REQ-A12",
+        "REQ-A13",
+        "REQ-A14",
+        "REQ-A15",
+        "REQ-A16",
+        "REQ-A17",
+        "REQ-TYPES"
+      ],
+      "rationale": "对应源条款与产品验收均映射到行为节点。"
+    },
+    {
+      "id": "steps",
+      "disposition": "covered",
+      "requirement_ids": [
+        "REQ-003",
+        "REQ-004",
+        "REQ-005",
+        "REQ-006"
+      ],
+      "rationale": "对应源条款与产品验收均映射到行为节点。"
+    },
+    {
+      "id": "interfaces",
+      "disposition": "covered",
+      "requirement_ids": [
+        "REQ-007"
+      ],
+      "rationale": "对应源条款与产品验收均映射到行为节点。"
+    },
+    {
+      "id": "work_packages",
+      "disposition": "covered",
+      "requirement_ids": [
+        "REQ-008",
+        "REQ-009",
+        "REQ-010",
+        "REQ-011"
+      ],
+      "rationale": "对应源条款与产品验收均映射到行为节点。"
+    },
+    {
+      "id": "test_matrix",
+      "disposition": "covered",
+      "requirement_ids": [
+        "REQ-012"
+      ],
+      "rationale": "对应源条款与产品验收均映射到行为节点。"
+    },
+    {
+      "id": "verification",
+      "disposition": "covered",
+      "requirement_ids": [
+        "REQ-013"
+      ],
+      "rationale": "对应源条款与产品验收均映射到行为节点。"
+    },
+    {
+      "id": "done_criteria",
+      "disposition": "covered",
+      "requirement_ids": [
+        "REQ-014"
+      ],
+      "rationale": "对应源条款与产品验收均映射到行为节点。"
+    },
+    {
+      "id": "stop_conditions",
+      "disposition": "covered",
+      "requirement_ids": [
+        "REQ-015"
+      ],
+      "rationale": "对应源条款与产品验收均映射到行为节点。"
+    },
+    {
+      "id": "external_sources",
+      "disposition": "covered",
+      "requirement_ids": [
+        "REQ-016"
+      ],
+      "rationale": "对应源条款与产品验收均映射到行为节点。"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "kind": "objective",
+      "source_document": "plan",
+      "source_section": "## objective",
+      "source_quote": "实现金钱和积分事件、共同确认及协议月统一入账的家庭服务。",
+      "statement": "实现金钱和积分事件、共同确认及协议月统一入账的家庭服务。",
+      "verification": "对应节点 Gates 与产品 A01–A17",
+      "node_ids": [
+        "FR-001-01",
+        "FR-001-02",
+        "FR-001-03",
+        "FR-001-04"
+      ]
+    },
+    {
+      "id": "REQ-002",
+      "kind": "scope",
+      "source_document": "plan",
+      "source_section": "## scope",
+      "source_quote": "不实现商品商城、用户管理页面、在线规则发布或自动任务；试卷跳过本期包含。",
+      "statement": "不实现商品商城、用户管理页面、在线规则发布或自动任务；试卷跳过本期包含。",
+      "verification": "对应节点 Gates 与产品 A01–A17",
+      "node_ids": [
+        "FR-001-01",
+        "FR-001-02",
+        "FR-001-03",
+        "FR-001-04"
+      ]
+    },
+    {
+      "id": "REQ-003",
+      "kind": "steps",
+      "source_document": "plan",
+      "source_section": "## steps",
+      "source_quote": "WP01：账号与首次设置。账号密码哈希、数据库会话、管理员全局和本人权限；首次管理员设置周期锚点，正式帐号钱包从零开始。",
+      "statement": "WP01：账号与首次设置。账号密码哈希、数据库会话、管理员全局和本人权限；首次管理员设置周期锚点，正式帐号钱包从零开始。",
+      "verification": "对应节点 Gates 与产品 A01–A17",
+      "node_ids": [
+        "FR-001-01"
+      ]
+    },
+    {
+      "id": "REQ-004",
+      "kind": "steps",
+      "source_document": "plan",
+      "source_section": "## steps",
+      "source_quote": "WP02：周期与奖惩规则。纯函数实现协议月、分档、家务限制、哭泣候选、两个独立封顶、积分跳过及反向抵销。",
+      "statement": "WP02：周期与奖惩规则。纯函数实现协议月、分档、家务限制、哭泣候选、两个独立封顶、积分跳过及反向抵销。",
+      "verification": "对应节点 Gates 与产品 A01–A17",
+      "node_ids": [
+        "FR-001-02"
+      ]
+    },
+    {
+      "id": "REQ-005",
+      "kind": "steps",
+      "source_document": "plan",
+      "source_section": "## steps",
+      "source_quote": "WP03：事件与统一入账。只追加事件与确认，纠错使用反向记录，月底待办、总结快照、对象本人及任意管理员确认（创建即确认）、负钱包及跨期差额原子入账。",
+      "statement": "WP03：事件与统一入账。只追加事件与确认，纠错使用反向记录，月底待办、总结快照、对象本人及任意管理员确认（创建即确认）、负钱包及跨期差额原子入账。",
+      "verification": "对应节点 Gates 与产品 A01–A17",
+      "node_ids": [
+        "FR-001-03"
+      ]
+    },
+    {
+      "id": "REQ-006",
+      "kind": "steps",
+      "source_document": "plan",
+      "source_section": "## steps",
+      "source_quote": "WP04：响应式界面与容器。实现手机与电脑完整登录、记录、确认、结算、历史与协议；固定依赖、Docker构建、手动备份恢复，商城无入口。",
+      "statement": "WP04：响应式界面与容器。实现手机与电脑完整登录、记录、确认、结算、历史与协议；固定依赖、Docker构建、手动备份恢复，商城无入口。",
+      "verification": "对应节点 Gates 与产品 A01–A17",
+      "node_ids": [
+        "FR-001-04"
+      ]
+    },
+    {
+      "id": "REQ-007",
+      "kind": "interfaces",
+      "source_document": "plan",
+      "source_section": "## interfaces",
+      "source_quote": "输入发生时间、原因、依据和次数，不输入金额或操作人；管理员全局，普通用户本人。",
+      "statement": "输入发生时间、原因、依据和次数，不输入金额或操作人；管理员全局，普通用户本人。",
+      "verification": "对应节点 Gates 与产品 A01–A17",
+      "node_ids": [
+        "FR-001-01",
+        "FR-001-02",
+        "FR-001-03",
+        "FR-001-04"
+      ]
+    },
+    {
+      "id": "REQ-008",
+      "kind": "work_packages",
+      "source_document": "plan",
+      "source_section": "## work_packages",
+      "source_quote": "WP01 提供 artifact:auth，由依赖单元消费。",
+      "statement": "WP01 提供 artifact:auth，由依赖单元消费。",
+      "verification": "对应节点 Gates 与产品 A01–A17",
+      "node_ids": [
+        "FR-001-01"
+      ]
+    },
+    {
+      "id": "REQ-009",
+      "kind": "work_packages",
+      "source_document": "plan",
+      "source_section": "## work_packages",
+      "source_quote": "WP02 提供 artifact:domain，由依赖单元消费。",
+      "statement": "WP02 提供 artifact:domain，由依赖单元消费。",
+      "verification": "对应节点 Gates 与产品 A01–A17",
+      "node_ids": [
+        "FR-001-02"
+      ]
+    },
+    {
+      "id": "REQ-010",
+      "kind": "work_packages",
+      "source_document": "plan",
+      "source_section": "## work_packages",
+      "source_quote": "WP03 提供 artifact:ledger，由依赖单元消费。",
+      "statement": "WP03 提供 artifact:ledger，由依赖单元消费。",
+      "verification": "对应节点 Gates 与产品 A01–A17",
+      "node_ids": [
+        "FR-001-03"
+      ]
+    },
+    {
+      "id": "REQ-011",
+      "kind": "work_packages",
+      "source_document": "plan",
+      "source_section": "## work_packages",
+      "source_quote": "WP04 提供 artifact:application，由依赖单元消费。",
+      "statement": "WP04 提供 artifact:application，由依赖单元消费。",
+      "verification": "对应节点 Gates 与产品 A01–A17",
+      "node_ids": [
+        "FR-001-04"
+      ]
+    },
+    {
+      "id": "REQ-012",
+      "kind": "test_matrix",
+      "source_document": "plan",
+      "source_section": "## test_matrix",
+      "source_quote": "先写行为测试观察 RED；覆盖边界、非法输入、权限、重复、并发和事务中途失败。",
+      "statement": "先写行为测试观察 RED；覆盖边界、非法输入、权限、重复、并发和事务中途失败。",
+      "verification": "对应节点 Gates 与产品 A01–A17",
+      "node_ids": [
+        "FR-001-01",
+        "FR-001-02",
+        "FR-001-03",
+        "FR-001-04"
+      ]
+    },
+    {
+      "id": "REQ-013",
+      "kind": "verification",
+      "source_document": "plan",
+      "source_section": "## verification",
+      "source_quote": "执行 npm test、npm run typecheck、npm run build、npm run test:e2e；验证容器、备份恢复和上线前后代理。",
+      "statement": "执行 npm test、npm run typecheck、npm run build、npm run test:e2e；验证容器、备份恢复和上线前后代理。",
+      "verification": "对应节点 Gates 与产品 A01–A17",
+      "node_ids": [
+        "FR-001-01",
+        "FR-001-02",
+        "FR-001-03",
+        "FR-001-04"
+      ]
+    },
+    {
+      "id": "REQ-014",
+      "kind": "done_criteria",
+      "source_document": "plan",
+      "source_section": "## done_criteria",
+      "source_quote": "交付已验证代码、运维命令和证据，不把本地通过或容器 Up 当成远程上线通过。",
+      "statement": "交付已验证代码、运维命令和证据，不把本地通过或容器 Up 当成远程上线通过。",
+      "verification": "对应节点 Gates 与产品 A01–A17",
+      "node_ids": [
+        "FR-001-01",
+        "FR-001-02",
+        "FR-001-03",
+        "FR-001-04"
+      ]
+    },
+    {
+      "id": "REQ-015",
+      "kind": "stop_conditions",
+      "source_document": "plan",
+      "source_section": "## stop_conditions",
+      "source_quote": "试卷跳过只使用足够的已结算积分；未授权的破坏性部署与 OCI 变更禁止。",
+      "statement": "试卷跳过只使用足够的已结算积分；未授权的破坏性部署与 OCI 变更禁止。",
+      "verification": "对应节点 Gates 与产品 A01–A17",
+      "node_ids": [
+        "FR-001-01",
+        "FR-001-02",
+        "FR-001-03",
+        "FR-001-04"
+      ]
+    },
+    {
+      "id": "REQ-016",
+      "kind": "external_sources",
+      "source_document": "plan",
+      "source_section": "## external_sources",
+      "source_quote": "依据现有产品设计0.6、开发设计0.4、Q01至Q13决策和官方Next.js、Prisma7、SQLite文档实现。",
+      "statement": "依据现有产品设计0.6、开发设计0.4、Q01至Q13决策和官方Next.js、Prisma7、SQLite文档实现。",
+      "verification": "对应节点 Gates 与产品 A01–A17",
+      "node_ids": [
+        "FR-001-01",
+        "FR-001-02",
+        "FR-001-03",
+        "FR-001-04"
+      ]
+    },
+    {
+      "id": "REQ-A01",
+      "kind": "scope",
+      "source_document": "product",
+      "source_section": "## 12 验收场景",
+      "source_quote": "| A01 | 登录、错误密码、退出 | 只有有效会话能访问业务 |",
+      "statement": "| A01 | 登录、错误密码、退出 | 只有有效会话能访问业务 |",
+      "verification": "产品验收 A01",
+      "node_ids": [
+        "FR-001-01",
+        "FR-001-04"
+      ]
+    },
+    {
+      "id": "REQ-A02",
+      "kind": "scope",
+      "source_document": "product",
+      "source_section": "## 12 验收场景",
+      "source_quote": "| A02 | 管理员全局与普通用户本人 | 两管理员可看所有，普通用户只能看本人全部记录 |",
+      "statement": "| A02 | 管理员全局与普通用户本人 | 两管理员可看所有，普通用户只能看本人全部记录 |",
+      "verification": "产品验收 A02",
+      "node_ids": [
+        "FR-001-01",
+        "FR-001-03",
+        "FR-001-04"
+      ]
+    },
+    {
+      "id": "REQ-A03",
+      "kind": "scope",
+      "source_document": "product",
+      "source_section": "## 12 验收场景",
+      "source_quote": "| A03 | 分数、等级、事件登记确认 | 边界符合协议，平时钱包不变 |",
+      "statement": "| A03 | 分数、等级、事件登记确认 | 边界符合协议，平时钱包不变 |",
+      "verification": "产品验收 A03",
+      "node_ids": [
+        "FR-001-02",
+        "FR-001-03"
+      ]
+    },
+    {
+      "id": "REQ-A04",
+      "kind": "scope",
+      "source_document": "product",
+      "source_section": "## 12 验收场景",
+      "source_quote": "| A04 | 整月封顶及顺序变化 | 奖励与扣减分别封顶，不分摊单条、不受顺序影响 |",
+      "statement": "| A04 | 整月封顶及顺序变化 | 奖励与扣减分别封顶，不分摊单条、不受顺序影响 |",
+      "verification": "产品验收 A04",
+      "node_ids": [
+        "FR-001-02"
+      ]
+    },
+    {
+      "id": "REQ-A05",
+      "kind": "scope",
+      "source_document": "product",
+      "source_section": "## 12 验收场景",
+      "source_quote": "| A05 | 家务重复、不同默写 | 同日家务最多一次，不同来源默写各可记分 |",
+      "statement": "| A05 | 家务重复、不同默写 | 同日家务最多一次，不同来源默写各可记分 |",
+      "verification": "产品验收 A05",
+      "node_ids": [
+        "FR-001-02",
+        "FR-001-03"
+      ]
+    },
+    {
+      "id": "REQ-A06",
+      "kind": "scope",
+      "source_document": "product",
+      "source_section": "## 12 验收场景",
+      "source_quote": "| A06 | 未确认事件与月底通知 | 对应登录人在页面看到待办，完成确认再核对总结 |",
+      "statement": "| A06 | 未确认事件与月底通知 | 对应登录人在页面看到待办，完成确认再核对总结 |",
+      "verification": "产品验收 A06",
+      "node_ids": [
+        "FR-001-03",
+        "FR-001-04"
+      ]
+    },
+    {
+      "id": "REQ-A07",
+      "kind": "scope",
+      "source_document": "product",
+      "source_section": "## 12 验收场景",
+      "source_quote": "| A07 | 首次管理员选周期及连续计算 | 自动沿用锚点，缺日、跨年、时区边界正确 |",
+      "statement": "| A07 | 首次管理员选周期及连续计算 | 自动沿用锚点，缺日、跨年、时区边界正确 |",
+      "verification": "产品验收 A07",
+      "node_ids": [
+        "FR-001-01",
+        "FR-001-02"
+      ]
+    },
+    {
+      "id": "REQ-A08",
+      "kind": "scope",
+      "source_document": "product",
+      "source_section": "## 12 验收场景",
+      "source_quote": "| A08 | 无哭泣、有哭泣、反向纠正哭泣 | 自动产生相应候选总结，确认前不入账 |",
+      "statement": "| A08 | 无哭泣、有哭泣、反向纠正哭泣 | 自动产生相应候选总结，确认前不入账 |",
+      "verification": "产品验收 A08",
+      "node_ids": [
+        "FR-001-02",
+        "FR-001-03"
+      ]
+    },
+    {
+      "id": "REQ-A09",
+      "kind": "scope",
+      "source_document": "product",
+      "source_section": "## 12 验收场景",
+      "source_quote": "| A09 | 试卷跳过 | -10 积分事项，自然月最多一次，月底统一入账 |",
+      "statement": "| A09 | 试卷跳过 | -10 积分事项，自然月最多一次，月底统一入账 |",
+      "verification": "产品验收 A09",
+      "node_ids": [
+        "FR-001-02",
+        "FR-001-03",
+        "FR-001-04"
+      ]
+    },
+    {
+      "id": "REQ-A10",
+      "kind": "scope",
+      "source_document": "product",
+      "source_section": "## 12 验收场景",
+      "source_quote": "| A10 | 本月试卷与积分事项反向记录 | 保留原记录和确认，不重复补回或无痕删除 |",
+      "statement": "| A10 | 本月试卷与积分事项反向记录 | 保留原记录和确认，不重复补回或无痕删除 |",
+      "verification": "产品验收 A10",
+      "node_ids": [
+        "FR-001-02",
+        "FR-001-03"
+      ]
+    },
+    {
+      "id": "REQ-A11",
+      "kind": "scope",
+      "source_document": "product",
+      "source_section": "## 12 验收场景",
+      "source_quote": "| A11 | 后续商城范围 | 无商品上传、商城入口及跨系统兑换接口 |",
+      "statement": "| A11 | 后续商城范围 | 无商品上传、商城入口及跨系统兑换接口 |",
+      "verification": "产品验收 A11",
+      "node_ids": [
+        "FR-001-04"
+      ]
+    },
+    {
+      "id": "REQ-A12",
+      "kind": "scope",
+      "source_document": "product",
+      "source_section": "## 12 验收场景",
+      "source_quote": "| A12 | 重复结算、并发、入账中途失败 | 一次入账或全部回滚，金钱允许负数 |",
+      "statement": "| A12 | 重复结算、并发、入账中途失败 | 一次入账或全部回滚，金钱允许负数 |",
+      "verification": "产品验收 A12",
+      "node_ids": [
+        "FR-001-03"
+      ]
+    },
+    {
+      "id": "REQ-A13",
+      "kind": "scope",
+      "source_document": "product",
+      "source_section": "## 12 验收场景",
+      "source_quote": "| A13 | 纠错与封顶、项目规则变动 | 关联抵销与旧周期差额正确，旧总结可追溯 |",
+      "statement": "| A13 | 纠错与封顶、项目规则变动 | 关联抵销与旧周期差额正确，旧总结可追溯 |",
+      "verification": "产品验收 A13",
+      "node_ids": [
+        "FR-001-02",
+        "FR-001-03"
+      ]
+    },
+    {
+      "id": "REQ-A14",
+      "kind": "scope",
+      "source_document": "product",
+      "source_section": "## 12 验收场景",
+      "source_quote": "| A14 | 任何业务变化 | 时间、操作人、对象、原因可查 |",
+      "statement": "| A14 | 任何业务变化 | 时间、操作人、对象、原因可查 |",
+      "verification": "产品验收 A14",
+      "node_ids": [
+        "FR-001-01",
+        "FR-001-03"
+      ]
+    },
+    {
+      "id": "REQ-A15",
+      "kind": "scope",
+      "source_document": "product",
+      "source_section": "## 12 验收场景",
+      "source_quote": "| A15 | 手机与电脑 | 同一数据、响应式布局、余额与待结算明确区分 |",
+      "statement": "| A15 | 手机与电脑 | 同一数据、响应式布局、余额与待结算明确区分 |",
+      "verification": "产品验收 A15",
+      "node_ids": [
+        "FR-001-04"
+      ]
+    },
+    {
+      "id": "REQ-A16",
+      "kind": "scope",
+      "source_document": "product",
+      "source_section": "## 12 验收场景",
+      "source_quote": "| A16 | 容器重建和恢复 | 账号、钱包、流水和周期设置完整保留 |",
+      "statement": "| A16 | 容器重建和恢复 | 账号、钱包、流水和周期设置完整保留 |",
+      "verification": "产品验收 A16",
+      "node_ids": [
+        "FR-001-04"
+      ]
+    },
+    {
+      "id": "REQ-A17",
+      "kind": "scope",
+      "source_document": "product",
+      "source_section": "## 12 验收场景",
+      "source_quote": "| A17 | 部署家庭站 | HTTPS 和登录正常，现有代理仍正常 |",
+      "statement": "| A17 | 部署家庭站 | HTTPS 和登录正常，现有代理仍正常 |",
+      "verification": "产品验收 A17",
+      "node_ids": [
+        "FR-001-04"
+      ]
+    },
+    {
+      "id": "REQ-TYPES",
+      "kind": "scope",
+      "source_document": "product",
+      "source_section": "### 4.1 记录类型与每次记录",
+      "source_quote": "管理员可新增记录类型，定义名称、每次对应金钱和积分；日常只选择类型并登记次数、时间、原因，不直接改钱包。",
+      "statement": "新增定额类型、次数事件、月底乘率入账；初始零余额不另设页面",
+      "verification": "record-types集成测试与浏览器新增类型流程",
+      "node_ids": [
+        "FR-001-02",
+        "FR-001-03",
+        "FR-001-04"
+      ]
+    }
+  ],
+  "review": {
+    "status": "PASS",
+    "unresolved_requirements": [],
+    "unjustified_nodes": [],
+    "reviewed_at": "2026-10-20T06:25:19.558879+00:00"
+  }
+}

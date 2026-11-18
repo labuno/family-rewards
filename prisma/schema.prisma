@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client"
+  output = "../src/generated/prisma"
+}
+datasource db {
+  provider = "sqlite"
+}
+model User {
+  id String @id @default(uuid())
+  username String @unique
+  name String
+  role String
+  passwordHash String
+  active Boolean @default(true)
+  revision Int @default(0)
+  createdAt DateTime @default(now())
+}
+model Session {
+  id String @id
+  userId String
+  expiresAt DateTime
+  revokedAt DateTime?
+}
+model Setting {
+  id Int @id @default(1)
+  anchor String
+  actorId String
+  createdAt DateTime @default(now())
+}
+model Event {
+  id String @id @default(uuid())
+  subjectId String
+  periodStart String
+  type String
+  occurredAt DateTime
+  quantity Int @default(1)
+  reason String
+  evidence String @default("{}")
+  source String
+  reverseOf String?
+  deletedAt DateTime?
+  deletedBy String?
+  actorId String
+  requestKey String @unique
+  createdAt DateTime @default(now())
+  @@index([subjectId, periodStart])
+}
+model EventDecision {
+  id String @id @default(uuid())
+  eventId String
+  actorId String
+  decision String
+  reason String @default("")
+  requestKey String @unique
+  createdAt DateTime @default(now())
+  @@index([eventId])
+}
+model Settlement {
+  id String @id @default(uuid())
+  subjectId String
+  periodStart String
+  periodEnd String
+  revision Int
+  rulesKey String
+  snapshot String
+  actorId String
+  postedAt DateTime?
+  postedBy String?
+  createdAt DateTime @default(now())
+  @@unique([subjectId, periodStart, revision, rulesKey])
+}
+model SettlementDecision {
+  id String @id @default(uuid())
+  settlementId String
+  actorId String
+  createdAt DateTime @default(now())
+  @@unique([settlementId, actorId])
+}
+model Wallet {
+  subjectId String @id
+  money Int @default(0)
+  points Int @default(0)
+}
+model WalletEntry {
+  id String @id @default(uuid())
+  subjectId String
+  asset String
+  before Int
+  delta Int
+  after Int
+  settlementId String
+  actorId String
+  createdAt DateTime @default(now())
+  @@unique([settlementId, asset])
+}
+model Audit {
+  id String @id @default(uuid())
+  actorId String?
+  action String
+  objectId String
+  detail String
+  createdAt DateTime @default(now())
+}
+model RecordType {
+  id String @id @default(uuid())
+  code String @unique
+  name String @unique
+  money Int
+  points Int
+  actorId String
+  createdAt DateTime @default(now())
+}
