@@ -16,8 +16,8 @@
     "db:migrate": "prisma migrate deploy",
     "accounts": "node --env-file-if-exists=.env --import tsx scripts/accounts.ts",
     "backup": "node --env-file-if-exists=.env --import tsx scripts/backup.ts",
-    "format:check": "prettier --check src tests scripts *.ts *.json deploy/*.yaml",
-    "format": "prettier --write src tests scripts *.ts *.json deploy/*.yaml"
+    "format:check": "prettier --check src tests scripts *.ts *.json deploy/*.yaml \"miniprogram/**/*.{js,json,wxss,wxml}\"",
+    "format": "prettier --write src tests scripts *.ts *.json deploy/*.yaml \"miniprogram/**/*.{js,json,wxss,wxml}\""
   },
   "dependencies": {
     "@prisma/adapter-better-sqlite3": "7.10.1",

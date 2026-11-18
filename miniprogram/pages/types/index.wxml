@@ -1,0 +1,18 @@
+<view class="page">
+  <view class="title">记录类型</view>
+  <view class="muted">每次增减依据家庭约定，月底统一结算。</view>
+  <view wx:if="{{error}}" class="error">{{error}}</view>
+  <view wx:for="{{types}}" wx:key="code" class="card">
+    <view class="heading">{{item.name}}</view>
+    <view>{{item.description}}</view>
+    <button class="secondary" bindtap="record" data-code="{{item.code}}">记一笔</button>
+  </view>
+  <form wx:if="{{admin}}" class="card" bindsubmit="submit">
+    <view class="heading">新增定额类型</view>
+    <input name="name" placeholder="类型名称" maxlength="60" />
+    <input name="money" placeholder="每次金额（元，可为负数）" />
+    <input name="points" placeholder="每次积分（整数，可为负数）" />
+    <button form-type="submit" disabled="{{busy}}" loading="{{busy}}">新增类型</button>
+    <view wx:if="{{saved}}" class="notice">类型已新增。</view>
+  </form>
+</view>

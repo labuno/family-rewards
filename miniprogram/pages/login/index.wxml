@@ -1,0 +1,14 @@
+<view class="page login">
+  <view class="eyebrow">FAMILY REWARDS</view>
+  <view class="title">欢迎回家</view>
+  <view class="muted">把每一份努力，变成共同珍藏的成长记录。</view>
+  <form bindsubmit="submit" class="card">
+    <label>帐号</label>
+    <input name="username" placeholder="请输入家庭帐号" maxlength="40" />
+    <label>密码</label>
+    <input name="password" password placeholder="请输入密码" maxlength="200" />
+    <view wx:if="{{error}}" class="error">{{error}}</view>
+    <button form-type="submit" loading="{{busy}}" disabled="{{busy}}">登录</button>
+  </form>
+  <view class="hint">仅限家庭成员使用 · 帐号由管理员维护</view>
+</view>

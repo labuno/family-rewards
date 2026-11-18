@@ -1,0 +1,151 @@
+page {
+  background: #fffaf5;
+  color: #343434;
+  font-size: 28rpx;
+  line-height: 1.65;
+}
+.page {
+  padding: 36rpx 30rpx calc(48rpx + env(safe-area-inset-bottom));
+}
+.title {
+  font-size: 48rpx;
+  font-weight: 700;
+  margin: 8rpx 0 24rpx;
+  letter-spacing: -1rpx;
+}
+.eyebrow {
+  color: #a36750;
+  font-size: 23rpx;
+  letter-spacing: 2rpx;
+}
+.muted,
+.hint {
+  color: #817b75;
+}
+.hint {
+  font-size: 23rpx;
+  margin: 12rpx 0;
+}
+.card {
+  background: #fff;
+  border: 1rpx solid #f0e6df;
+  border-radius: 28rpx;
+  padding: 30rpx;
+  margin: 24rpx 0;
+  box-shadow: 0 8rpx 30rpx rgba(98, 65, 40, 0.03);
+}
+.hero {
+  background: #fff0e8;
+  border-color: #ffe1cf;
+}
+.heading {
+  font-size: 31rpx;
+  font-weight: 600;
+  margin-bottom: 18rpx;
+}
+.amount {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #a3553e;
+}
+.wallets {
+  display: flex;
+  justify-content: space-between;
+  gap: 24rpx;
+  padding: 24rpx 0;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20rpx;
+  padding: 22rpx 0;
+  border-bottom: 1rpx solid #f6f0eb;
+}
+.detail {
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f6f0eb;
+}
+.badge {
+  display: inline-block;
+  background: #edf3ec;
+  color: #56724b;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 23rpx;
+}
+button {
+  background: #c9684d;
+  color: #fff;
+  border-radius: 18rpx;
+  font-size: 28rpx;
+  margin-top: 22rpx;
+  line-height: 2.8;
+}
+button::after {
+  border: none;
+}
+button.secondary {
+  background: #f5f0e9;
+  color: #67584c;
+}
+button.danger {
+  background: #fff0ed;
+  color: #aa3b30;
+}
+button[disabled] {
+  opacity: 0.55;
+}
+input,
+textarea,
+.select {
+  box-sizing: border-box;
+  width: 100%;
+  background: #faf7f3;
+  border: 1rpx solid #e9e1d9;
+  border-radius: 14rpx;
+  padding: 20rpx;
+  margin: 12rpx 0 24rpx;
+}
+input {
+  height: 88rpx;
+}
+textarea {
+  min-height: 160rpx;
+}
+label {
+  display: block;
+  margin-top: 18rpx;
+  font-weight: 500;
+}
+.error {
+  color: #a63a30;
+  background: #ffefed;
+  padding: 22rpx;
+  border-radius: 16rpx;
+  margin: 18rpx 0;
+}
+.notice {
+  background: #f0f5ec;
+  color: #536d49;
+  padding: 20rpx;
+  border-radius: 14rpx;
+  margin: 18rpx 0;
+}
+.empty {
+  text-align: center;
+  color: #93867b;
+  padding: 60rpx 0;
+}
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+.menu button {
+  width: calc(50% - 8rpx);
+  margin: 0 0 10rpx;
+}
+.login {
+  padding-top: 120rpx;
+}

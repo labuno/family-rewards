@@ -31,3 +31,6 @@ test-results/
 *.tsbuildinfo
 /acme/
 /tls/
+
+# WeChat developer tools local settings
+miniprogram/project.private.config.json

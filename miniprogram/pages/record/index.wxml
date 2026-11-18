@@ -1,0 +1,72 @@
+<view class="page">
+  <view class="title">记一笔</view>
+  <view class="muted">记录事实，一起确认，再在月底存进钱包。</view>
+  <view wx:if="{{error}}" class="error">{{error}}</view>
+  <form wx:if="{{types.length}}" bindsubmit="submit" class="card">
+    <label>事项类型</label>
+    <picker
+      range="{{types}}"
+      range-key="name"
+      value="{{typeIndex}}"
+      data-field="typeIndex"
+      bindchange="choose"
+    >
+      <view class="select">{{types[typeIndex].name}} ▾</view>
+    </picker>
+    <label>发生日期（北京时间）</label>
+    <picker mode="date" value="{{date}}" data-field="date" bindchange="field">
+      <view class="select">{{date}}</view>
+    </picker>
+    <picker mode="time" value="{{time}}" data-field="time" bindchange="field">
+      <view class="select">{{time}}</view>
+    </picker>
+    <block wx:if="{{type === 'SCHOOL'}}">
+      <label>成绩等级</label>
+      <picker range="{{grades}}" value="{{gradeIndex}}" data-field="gradeIndex" bindchange="choose">
+        <view class="select">{{grades[gradeIndex]}} ▾</view>
+      </picker>
+    </block>
+    <block wx:if="{{type === 'BASIC' || type === 'ADVANCED'}}">
+      <label>试卷分数</label>
+      <input
+        type="digit"
+        value="{{score}}"
+        data-field="score"
+        bindinput="field"
+        placeholder="0–100"
+      />
+    </block>
+    <block wx:if="{{type === 'SCHOOL' || type === 'BASIC' || type === 'ADVANCED'}}">
+      <label>年级</label>
+      <picker range="{{years}}" value="{{yearIndex}}" data-field="yearIndex" bindchange="choose">
+        <view class="select">{{years[yearIndex]}} ▾</view>
+      </picker>
+    </block>
+    <block wx:if="{{type === 'SHOUT'}}">
+      <label>对象</label>
+      <picker
+        range="{{targets}}"
+        value="{{targetIndex}}"
+        data-field="targetIndex"
+        bindchange="choose"
+      >
+        <view class="select">{{targetIndex >= 0 ? targets[targetIndex] : '请选择对象'}} ▾</view>
+      </picker>
+    </block>
+    <label>次数</label>
+    <input
+      name="quantity"
+      type="number"
+      value="{{quantity}}"
+      data-field="quantity"
+      bindinput="field"
+    />
+    <label>事项原因</label>
+    <textarea name="reason" placeholder="发生了什么？" maxlength="1000" />
+    <label>来源或依据（可选）</label>
+    <input name="source" placeholder="如某次考试或默写" maxlength="200" />
+    <button class="secondary" bindtap="preview" disabled="{{busy}}">查看预计增减</button>
+    <view wx:if="{{previewText}}" class="notice">{{previewText}}</view>
+    <button form-type="submit" loading="{{busy}}" disabled="{{busy}}">保存记录</button>
+  </form>
+</view>

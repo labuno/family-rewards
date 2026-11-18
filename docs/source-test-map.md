@@ -28,3 +28,11 @@
 | 产品、开发、决策、运维文档 | 本地链接、表格、决策与实现范围一致性检查；执行图与固定摘要检查 |
 
 测试使用假密码与隔离数据库；真实密码、Token、数据及浏览器会话不进入仓库或公开测试日志。
+
+## 微信小程序（MP-001）
+
+- `src/server/mini-api.ts`、`mini-commands.ts`、`mini-queries.ts`：`tests/integration/mini-api.test.ts` 使用隔离 SQLite 验证 Bearer 会话、角色权限、资产过滤、规则预览、登记重试、确认、删除、更正、总结与失效、重复入账及附件错误。
+- `src/app/api/mini/route.ts`：`tests/browser/mini.spec.ts` 通过真实 Next.js HTTP 路由连接实际小程序页面 JS，同时验证 Web 查询、确认及钱包同步。
+- `miniprogram/utils/api.js`、`page.js`、`view.js` 和 `pages/*/index.js`：`tests/unit/mini-client.test.ts`、`mini-pages.test.ts` 验证 wx 请求边界、401、文件打开、失败重试标识、异步互斥、登录、成员切换、筛选、录入边界和页面事件绑定。
+- `miniprogram/app.json`、页面 JSON/WXML：页面完整性和事件处理器校验在 `mini-pages.test.ts`；格式命令覆盖 JS、JSON、WXSS、WXML。WXML/WXSS 原生编译与视觉效果需要微信开发者工具及真机，本地 Node/浏览器验证不能替代。
+- `tests/support/mini-runtime.ts` 在独立 VM 中加载实际 CommonJS 页面与工具模块，模拟 `Page`、`getApp`、`setData` 和 wx Adapter；不模拟业务服务。

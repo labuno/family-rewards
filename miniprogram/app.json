@@ -1,0 +1,22 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/home/index",
+    "pages/setup/index",
+    "pages/history/index",
+    "pages/record/index",
+    "pages/event/index",
+    "pages/types/index",
+    "pages/settlements/index",
+    "pages/summary/index",
+    "pages/agreement/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "家庭成长站",
+    "navigationBarBackgroundColor": "#fffaf5",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#fffaf5"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

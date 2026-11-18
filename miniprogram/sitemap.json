@@ -1,0 +1,9 @@
+{
+  "desc": "Private family app",
+  "rules": [
+    {
+      "action": "disallow",
+      "page": "*"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+<view class="page">
+  <view class="title">
+    {{asset === 'MONEY' ? '金钱事项' : asset === 'POINTS' ? '积分事项' : '全部成长记录'}}
+  </view>
+  <button bindtap="add">＋ 记一笔</button>
+  <view class="card">
+    <picker range="{{statuses}}" value="{{statusIndex}}" bindchange="status">
+      <view class="select">{{statuses[statusIndex]}} ▾</view>
+    </picker>
+    <picker range="{{typeOptions}}" range-key="name" value="{{typeIndex}}" bindchange="chooseType">
+      <view class="select">{{typeOptions[typeIndex].name}} ▾</view>
+    </picker>
+    <picker mode="date" value="{{periodStart}}" bindchange="period">
+      <view class="select">{{periodStart || '全部协议月'}} ▾</view>
+    </picker>
+    <button wx:if="{{periodStart}}" class="secondary" bindtap="clearPeriod" disabled="{{busy}}">
+      清除协议月筛选
+    </button>
+  </view>
+  <view wx:if="{{error}}" class="error">{{error}}</view>
+  <view class="hint">共 {{total || 0}} 条 · 金额和积分在月底统一入账</view>
+  <view wx:for="{{events}}" wx:key="id" class="card" bindtap="open" data-id="{{item.id}}">
+    <view class="row">
+      <text class="heading">{{item.label}}</text>
+      <text class="badge">{{item.statusText}}</text>
+    </view>
+    <view>{{item.reason}}</view>
+    <view class="hint">{{item.timeText}} · {{item.quantity}} 次</view>
+    <view class="wallets">
+      <text wx:if="{{item.showMoney}}">{{item.moneyText}}</text>
+      <text wx:if="{{item.showPoints}}">{{item.impact.points}} 积分</text>
+    </view>
+  </view>
+  <view wx:if="{{!events.length && !busy}}" class="empty">这个范围还没有记录。</view>
+  <button
+    wx:if="{{hasMore}}"
+    class="secondary"
+    bindtap="more"
+    loading="{{busy}}"
+    disabled="{{busy}}"
+  >
+    加载更多
+  </button>
+</view>

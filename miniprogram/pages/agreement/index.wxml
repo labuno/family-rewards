@@ -1,0 +1,15 @@
+<view class="page">
+  <view class="eyebrow">共同的约定，温暖地遵守</view>
+  <view class="title">我们的约定</view>
+  <view class="card">
+    <view>记录日常事实，共同确认，月底结算。发现错误时追加反向更正，保留原始记录和时间线。</view>
+    <view class="hint">所有金额与积分以家庭协议及当前记录类型为准。</view>
+    <button bindtap="open" data-format="pdf" disabled="{{busy}}" loading="{{busy}}">
+      查看协议 PDF
+    </button>
+    <button class="secondary" bindtap="open" data-format="docx" disabled="{{busy}}">
+      打开原始 Word 文件
+    </button>
+    <view wx:if="{{error}}" class="error">{{error}}</view>
+  </view>
+</view>

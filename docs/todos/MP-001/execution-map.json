@@ -1,0 +1,119 @@
+{
+  "schema_version": 5,
+  "plan_id": "MP-001",
+  "project_root": "../../..",
+  "source_plan": "docs/miniprogram-plan.md",
+  "traceability": "traceability.json",
+  "work_packages": [
+    "WP01",
+    "WP02"
+  ],
+  "nodes": [
+    {
+      "id": "MP-001-01",
+      "title": "共享数据 JSON API",
+      "work_packages": [
+        "WP01"
+      ],
+      "source_sections": [
+        "## steps"
+      ],
+      "todo": "01.md",
+      "maturity": "DECOMPOSED",
+      "elaboration_blockers": [],
+      "readiness": "READY",
+      "status": "验证成功",
+      "depends_on": [],
+      "blockers": [],
+      "consumes": [],
+      "produces": [
+        {
+          "id": "artifact:mini-api",
+          "kind": "code",
+          "description": "共享数据 JSON API",
+          "locator": "src/server/mini-api.ts"
+        }
+      ],
+      "integration_gates": [
+        "npm test -- tests/integration/mini-api.test.ts"
+      ],
+      "evidence": [
+        {
+          "command": "npm test -- tests/integration/mini-api.test.ts",
+          "result": "PASS",
+          "scope": "isolated SQLite; 10 API behavior tests",
+          "verified_at": "2026-11-18T13:37:32.267455+08:00"
+        }
+      ]
+    },
+    {
+      "id": "MP-001-02",
+      "title": "原生小程序客户端",
+      "work_packages": [
+        "WP02"
+      ],
+      "source_sections": [
+        "## steps"
+      ],
+      "todo": "02.md",
+      "maturity": "DECOMPOSED",
+      "elaboration_blockers": [],
+      "readiness": "READY",
+      "status": "验证成功",
+      "depends_on": [
+        "MP-001-01"
+      ],
+      "blockers": [],
+      "consumes": [
+        "artifact:mini-api"
+      ],
+      "produces": [
+        {
+          "id": "artifact:mini-client",
+          "kind": "code",
+          "description": "原生小程序客户端",
+          "locator": "miniprogram"
+        }
+      ],
+      "integration_gates": [
+        "npm test",
+        "npm run typecheck",
+        "npm run format:check",
+        "npm run build",
+        "npm run test:e2e"
+      ],
+      "evidence": [
+        {
+          "command": "npm test",
+          "result": "PASS",
+          "scope": "local; simulated wx page runtime and real HTTP/Web; no WeChat tool or device compilation",
+          "verified_at": "2026-11-18T13:58:13.194629+08:00"
+        },
+        {
+          "command": "npm run typecheck",
+          "result": "PASS",
+          "scope": "local; simulated wx page runtime and real HTTP/Web; no WeChat tool or device compilation",
+          "verified_at": "2026-11-18T13:58:13.194629+08:00"
+        },
+        {
+          "command": "npm run format:check",
+          "result": "PASS",
+          "scope": "local; simulated wx page runtime and real HTTP/Web; no WeChat tool or device compilation",
+          "verified_at": "2026-11-18T13:58:13.194629+08:00"
+        },
+        {
+          "command": "npm run build",
+          "result": "PASS",
+          "scope": "local; simulated wx page runtime and real HTTP/Web; no WeChat tool or device compilation",
+          "verified_at": "2026-11-18T13:58:13.194629+08:00"
+        },
+        {
+          "command": "npm run test:e2e",
+          "result": "PASS",
+          "scope": "local; simulated wx page runtime and real HTTP/Web; no WeChat tool or device compilation",
+          "verified_at": "2026-11-18T13:58:13.194629+08:00"
+        }
+      ]
+    }
+  ]
+}

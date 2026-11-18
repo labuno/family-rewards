@@ -1,0 +1,51 @@
+<view class="page">
+  <view wx:if="{{error}}" class="error">{{error}}</view>
+  <block wx:if="{{ready}}">
+    <view class="title">{{event.label}}</view>
+    <view class="card">
+      <view class="badge">{{event.statusText}}</view>
+      <view class="heading">{{event.reason}}</view>
+      <view class="detail">对象：{{event.subjectName}}</view>
+      <view class="detail">发生于 {{event.timeText}}（北京时间）</view>
+      <view class="detail">
+        {{event.quantity}} 次 · {{event.moneyText}} / {{event.impact.points}} 积分
+      </view>
+      <view wx:if="{{evidence.schoolYear}}">年级：{{evidence.schoolYear}}</view>
+      <view wx:if="{{evidence.grade}}">等级：{{evidence.grade}}</view>
+      <view wx:if="{{evidence.score !== undefined}}">分数：{{evidence.score}}</view>
+      <view wx:if="{{evidence.shoutTarget}}">对象：{{evidence.shoutTarget}}</view>
+      <view class="detail">已确认：{{confirmations || '等待确认'}}</view>
+      <button wx:if="{{event.reverseOf}}" class="secondary" bindtap="original">查看原始记录</button>
+      <view wx:if="{{posted}}" class="notice">本协议月已结算，更正请追加反向记录。</view>
+      <form wx:if="{{canConfirm}}" bindsubmit="decide" data-decision="CONFIRM">
+        <button form-type="submit" disabled="{{busy}}">确认这条记录</button>
+      </form>
+    </view>
+    <form wx:if="{{canDispute}}" class="card" bindsubmit="decide" data-decision="DISPUTE">
+      <view class="heading">有需要沟通的地方？</view>
+      <textarea name="reason" placeholder="填写沟通原因" maxlength="1000" />
+      <button form-type="submit" class="secondary" disabled="{{busy}}">标记待沟通</button>
+    </form>
+    <form wx:if="{{canReverse}}" class="card" bindsubmit="reverse">
+      <view class="heading">追加反向更正</view>
+      <view class="hint">抵销原事项，保留原记录和确认。</view>
+      <textarea name="reason" placeholder="填写更正原因" maxlength="1000" />
+      <button form-type="submit" class="secondary" disabled="{{busy}}">新增反向记录</button>
+    </form>
+    <button wx:if="{{canDelete}}" class="danger" bindtap="remove" disabled="{{busy}}">
+      删除未确认记录
+    </button>
+    <view class="card">
+      <view class="heading">确认与操作时间线</view>
+      <view class="detail">
+        {{event.actorName}} 创建记录（创建即确认）
+        <view class="hint">{{createdText}}</view>
+      </view>
+      <view wx:for="{{decisions}}" wx:key="id" class="detail">
+        {{item.name}} · {{item.decision === 'CONFIRM' ? '确认' : '提出异议'}}
+        <view class="hint">{{item.timeText}}</view>
+        <view wx:if="{{item.reason}}">{{item.reason}}</view>
+      </view>
+    </view>
+  </block>
+</view>

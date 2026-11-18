@@ -1,0 +1,16 @@
+<view class="page">
+  <view class="title">从一个约定开始</view>
+  <view class="card">
+    <view class="muted">由管理员设置第一个协议月起点，之后自动沿用，不能覆盖。</view>
+    <block wx:if="{{admin}}">
+      <picker mode="date" value="{{anchor}}" bindchange="change">
+        <view class="select">{{anchor || '选择协议月起点'}} ▾</view>
+      </picker>
+      <button bindtap="submit" disabled="{{busy || !anchor}}" loading="{{busy}}">
+        开启家庭成长站
+      </button>
+    </block>
+    <view wx:else>请等待管理员完成首次设置。</view>
+    <view wx:if="{{error}}" class="error">{{error}}</view>
+  </view>
+</view>

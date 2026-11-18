@@ -1,0 +1,63 @@
+<view class="page">
+  <view wx:if="{{error}}" class="error">{{error}}</view>
+  <block wx:if="{{ready}}">
+    <view class="title">一起核对这个月</view>
+    <view class="muted">{{settlement.periodStart}} — {{settlement.periodEnd}}（不含结束日）</view>
+    <view wx:if="{{stale}}" class="error">事实或规则已变化，请返回重新生成并确认总结。</view>
+    <view class="card">
+      <view class="badge">{{settlement.postedAt ? '已入账' : '等待共同确认'}}</view>
+      <view class="heading">金钱结算</view>
+      <view class="row">
+        原始奖励
+        <text>{{rawReward}}</text>
+      </view>
+      <view class="row">
+        其中无哭泣奖励
+        <text>{{bonus}}</text>
+      </view>
+      <view class="row">
+        奖励封顶后
+        <text>{{reward}}</text>
+      </view>
+      <view class="row">
+        原始扣减
+        <text>{{rawDeduction}}</text>
+      </view>
+      <view class="row">
+        扣减封顶后
+        <text>{{deduction}}</text>
+      </view>
+      <view class="row">
+        本周期净变化
+        <text>{{moneyDelta}}</text>
+      </view>
+      <view class="hint">学习哭泣 {{snapshot.summary.cryCount}} 次</view>
+    </view>
+    <view class="card">
+      <view class="heading">本次入账</view>
+      <view class="amount">{{moneyTotal}}</view>
+      <view>{{snapshot.pointsTotal}} 积分</view>
+      <view wx:for="{{adjustments}}" wx:key="periodStart" class="notice">
+        原协议月 {{item.periodStart}} 更正：{{item.moneyText}} / {{item.points}} 积分
+      </view>
+    </view>
+    <view class="card">
+      <view class="heading">事项次数</view>
+      <view wx:for="{{counts}}" wx:key="code" class="row">
+        {{item.label}}
+        <text>{{item.count}} 次</text>
+      </view>
+    </view>
+    <view class="card">
+      <view class="heading">共同确认</view>
+      <view wx:for="{{participants}}" wx:key="id" class="row">
+        {{item.name}}
+        <text>{{item.confirmed ? '已确认' : '等待确认'}}</text>
+      </view>
+      <view class="hint">创建即确认，对象本人和任一管理员确认即可。</view>
+      <button wx:if="{{canConfirm}}" bindtap="confirm" disabled="{{busy}}">确认本月总结</button>
+      <button wx:if="{{canPost}}" bindtap="post" disabled="{{busy}}">确认并更新钱包</button>
+      <view wx:if="{{settlement.postedAt}}" class="notice">已入账，重复提交不会重复增加余额。</view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,93 @@
+<view class="page">
+  <view class="eyebrow">每一点进步，都值得被看见</view>
+  <view class="title">成长看板</view>
+  <view wx:if="{{error}}" class="error">
+    {{error}}
+    <button class="secondary" bindtap="refresh">重新加载</button>
+  </view>
+  <view wx:if="{{busy}}" class="hint">正在加载…</view>
+  <block wx:if="{{ready}}">
+    <picker
+      wx:if="{{actor.role === 'ADMIN'}}"
+      range="{{users}}"
+      range-key="name"
+      value="{{userIndex}}"
+      bindchange="changeSubject"
+    >
+      <view class="select">{{subject.name}} 的成长空间 ▾</view>
+    </picker>
+    <view class="card hero">
+      <view class="muted">{{subject.name}} · 已结算钱包</view>
+      <view class="wallets">
+        <view bindtap="open" data-url="/pages/history/index?asset=MONEY">
+          <view class="amount">{{moneyText}}</view>
+          <text>金钱钱包 →</text>
+        </view>
+        <view bindtap="open" data-url="/pages/history/index?asset=POINTS">
+          <view class="amount">{{wallet.points}}</view>
+          <text>积分钱包 →</text>
+        </view>
+      </view>
+      <button bindtap="open" data-url="/pages/record/index">＋ 记一笔</button>
+    </view>
+    <view class="card">
+      <view class="heading">本月预计变化 · 未入账</view>
+      <view>{{period.start}} — {{period.end}}</view>
+      <view class="wallets">
+        <text>{{previewMoney}}</text>
+        <text>{{preview.records.pointsDelta}} 积分</text>
+      </view>
+      <view class="hint">
+        待确认 {{preview.pendingCount}} 条。月度奖励独立显示，确认结算前不计入钱包。
+      </view>
+    </view>
+    <view class="card">
+      <view class="heading">无学习哭泣月度奖励</view>
+      <view>
+        {{bonusMoney}} · {{preview.bonus.status === 'blocked' ? '有哭泣记录' : preview.bonus.status
+        === 'pending' ? '有待核对记录' : '候选奖励'}}
+      </view>
+    </view>
+    <view class="card">
+      <view class="heading">待确认与沟通 · {{pending.length}}</view>
+      <view wx:if="{{!pending.length}}" class="muted">当前没有待处理事项。</view>
+      <view
+        wx:for="{{pending}}"
+        wx:key="id"
+        class="row"
+        bindtap="open"
+        data-url="/pages/event/index?id={{item.id}}"
+      >
+        <view>
+          {{item.reason}}
+          <view class="hint">{{item.label}} · {{item.statusText}}</view>
+        </view>
+        <text>→</text>
+      </view>
+    </view>
+    <view class="card">
+      <view class="heading">最近记录</view>
+      <view wx:if="{{!recent.length}}" class="muted">还没有记录，记下今天的小进步吧。</view>
+      <view
+        wx:for="{{recent}}"
+        wx:key="id"
+        class="row"
+        bindtap="open"
+        data-url="/pages/event/index?id={{item.id}}"
+      >
+        <view>
+          {{item.reason}}
+          <view class="hint">{{item.label}} · {{item.timeText}}</view>
+        </view>
+        <text>{{item.statusText}}</text>
+      </view>
+      <button class="secondary" bindtap="open" data-url="/pages/history/index">全部成长记录</button>
+    </view>
+    <view class="menu">
+      <button class="secondary" bindtap="open" data-url="/pages/types/index">记录类型</button>
+      <button class="secondary" bindtap="open" data-url="/pages/settlements/index">月度总结</button>
+      <button class="secondary" bindtap="open" data-url="/pages/agreement/index">我们的约定</button>
+      <button class="secondary" bindtap="logout" disabled="{{busy}}">退出登录</button>
+    </view>
+  </block>
+</view>

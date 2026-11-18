@@ -1,0 +1,28 @@
+<view class="page">
+  <view class="title">一起回顾这个月</view>
+  <view wx:if="{{error}}" class="error">{{error}}</view>
+  <view class="card">
+    <view class="heading">生成月度总结</view>
+    <view class="hint">完整协议月结束后，由管理员生成，本人及任一管理员确认后入账。</view>
+    <block wx:if="{{admin}}">
+      <picker mode="date" value="{{start}}" bindchange="change">
+        <view class="select">{{start || '选择协议月起点'}} ▾</view>
+      </picker>
+      <button bindtap="generate" loading="{{busy}}" disabled="{{busy}}">生成月度总结</button>
+    </block>
+    <view wx:else>等待管理员生成后，你可以打开总结并确认。</view>
+  </view>
+  <view class="card">
+    <view class="heading">待核对事项 · {{pending.length}}</view>
+    <view wx:for="{{pending}}" wx:key="id" class="row" bindtap="event" data-id="{{item.id}}">
+      {{item.reason}} →
+    </view>
+    <view wx:if="{{!pending.length}}" class="muted">当前没有未确认记录。</view>
+  </view>
+  <view class="heading">历史总结</view>
+  <view wx:for="{{settlements}}" wx:key="id" class="card" bindtap="open" data-id="{{item.id}}">
+    <view>{{item.periodStart}} — {{item.periodEnd}}</view>
+    <view class="badge">{{item.statusText}} →</view>
+  </view>
+  <view wx:if="{{!settlements.length}}" class="empty">还没有月度总结。</view>
+</view>

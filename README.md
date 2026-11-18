@@ -40,6 +40,12 @@ npm run test:e2e
 
 See the [runbook](docs/runbook.md) for local setup, starting the app, account maintenance, Docker deployment, certificates, and backups. Local and production environments use separate configuration. Credentials, tokens, databases, and backups must stay out of Git.
 
+## WeChat Mini Program
+
+The native client lives in [`miniprogram/`](miniprogram/README.md). It shares the existing backend, accounts, records, and wallets with the Web app through `/api/mini`; browser sessions continue to use the existing Web endpoints.
+
+Import the `miniprogram` directory into WeChat Developer Tools. The checked-in configuration uses a guest AppID and a local API address. See the [setup and verification guide](miniprogram/README.md) before connecting a device or a production server. WeChat sign-in, multiple households, and production publishing are not included in this version.
+
 ## Documentation
 
 The following documents are currently maintained in Chinese:
